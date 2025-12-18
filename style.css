@@ -1,0 +1,321 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.top_title{
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 20px 0;
+    color: #ffffff;
+    font-weight: bold;
+
+}
+.top_title span{
+    color: #ffdd57;
+}
+.description{
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #f0f0f0;
+}
+.Diffusion_Constant{
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #ffffff;
+}
+.diffusion_label{
+    font-weight: bold;
+    margin-right: 10px;
+}
+.diffusion_slider{
+    width: 300px;
+    vertical-align: middle;
+}
+.Time_Step_dt {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #ffffff;
+}
+.Time_label{
+    font-weight: bold;
+    margin-right: 10px;
+}
+.Time_slider{
+    width: 300px;
+    vertical-align: middle;
+}
+.Number_of_Particles{
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #ffffff;
+}
+.Particles_label{
+    font-weight: bold;
+    margin-right: 10px;
+}
+.Particles_slider{
+    width: 300px;
+    vertical-align: middle;
+}
+.calculation_section {
+    text-align: center;
+    margin: 30px 0;
+    color: #ffffff;
+}
+.distance_label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+.distance_input {
+    width: 100px;
+    padding: 5px;
+    font-size: 1rem;
+    margin-right: 20px;
+}
+
+.calculate_button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #ffdd57;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.parameter_explorer {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 30px ;
+    max-width: 600px;
+    color: #ffffff;
+}
+
+.param_title {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #ffdd57;
+}
+
+.param_description {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #f0f0f0;
+}
+
+.param_control {
+    font-size: 1.3rem;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.param_label {
+    font-weight: bold;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.param_slider {
+    width: 300px;
+    vertical-align: middle;
+}
+
+.apply_button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.apply_button:hover {
+    background-color: #45a049;
+}
+
+
+.calculate_button:hover {
+    background-color: #ffc107;
+}
+.results {
+    margin-top: 20px;
+    font-size: 1.2rem;
+}
+.results p {
+    margin: 10px 0;
+}
+.results b {
+    color: #ffdd57;
+}
+@media (max-width: 600px) {
+    .diffusion_slider, .Time_slider, .Particles_slider {
+        width: 100%;
+    }
+}
+.larger {
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    margin: 2rem;
+}
+.calculation_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 30px ;
+    max-width: 600px;
+    color: #ffffff;
+}
+.distance_input {
+    margin-bottom: 15px;
+}
+.calculate_button {
+    margin-top: 10px;
+}
+.results_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.1rem;
+    
+
+}
+.graphs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.concept_section {
+    margin: 40px auto;
+    max-width: 1200px;
+    padding: 20px;
+    color: #ffffff;
+}
+
+.concept_title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #ffdd57;
+}
+
+.concept_grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+.spacer{
+    height: 15rem;
+    width: 15rem;
+
+}
+
+.concept_card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(8px);
+    Display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+.graph_section {
+    margin: 40px auto;
+    max-width: 1200px;
+    padding: 20px;
+    color: #ffffff;
+}
+.graphs {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(8px);
+    margin: 5rem 10rem;
+    padding: 2rem;
+}
+
+.graph_title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.graph_description {
+    font-size: 1rem;
+    color: #dfe6ff;
+    margin-bottom: 15px;
+    text-align: center;
+
+}
+
+.concept_card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    color: #f4f6fb;
+}
+
+.concept_card p {
+    margin-bottom: 10px;
+    color: #f0f0f0;
+}
+
+.concept_list {
+    margin: 8px 0 10px 18px;
+    color: #f0f0f0;
+}
+
+.equation {
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 12px 0 6px;
+}
+
+.equation_note {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #dfe6ff;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 900px) {
+    .concept_section {
+        padding: 10px 16px;
+    }
+}

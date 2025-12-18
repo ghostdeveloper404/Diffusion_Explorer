@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diffusion Explorer</title>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1 class="top_title">Welcome to Diffusion Explorer</h1>
+  <p class="description">Explore the fascinating world of diffusion processes!</p>
+  <div class="spacer"></div>
+
+  <section class="concept_section">
+    <div class="concept_grid">
+      <article class="concept_card">
+        <h3>Diffusion Fails for Long-Distance Neural Signaling</h3>
+        <p>Diffusion spreads particles passively from high to low concentration. It works over tiny distances but slows
+          drastically over axon-scale lengths.</p>
+        <p class="equation">\(\langle x^2 \rangle = 6Dt\)</p>
+        <p class="equation_note">\(\langle x^2 \rangle\): mean squared displacement, \(D\): diffusion constant, \(t\):
+          time.</p>
+        <p>Time grows with distance squared: \(t \propto x^2\). Example: to diffuse 1 mm, Na+ ions (\(D \approx 1.33
+          \times 10^{-9}\,\text{m}^2/\text{s}\)) take about 160 s, while an action potential traveling
+          \(50\,\text{m/s}\) takes ~0.02 s. Diffusion alone is too slow, so neurons use electrical signals.</p>
+
+        <div class="Diffusion_Constant">
+          <label class="diffusion_label">Diffusion Constant (D): <span id="dValue">1.33e-9</span></label>
+          <input class="diffusion_slider" type="range" id="dSlider" min="0.1e-9" max="5e-9" step="0.01e-9"
+            value="1.33e-9">
+        </div>
+
+        <div class="Time_Step_dt">
+          <label class="Time_label">Time Step (dt): <span id="dtValue">0.01</span></label>
+          <input class="Time_slider" type="range" id="dtSlider" min="0.001" max="0.1" step="0.001" value="0.01">
+        </div>
+
+        <div class="Number_of_Particles">
+          <label class="particles_label">Number of Particles: <span id="nValue">1000</span></label>
+          <input class="particles_slider" type="range" id="nSlider" min="100" max="5000" step="100" value="1000">
+        </div>
+      </article>
+      <article class="concept_card">
+        <h3>Time Calculator: How Long It Takes</h3>
+        <p>For 3D diffusion the time to reach distance \(x\) is:</p>
+        <p class="equation">\(t_{\text{diff}} = \dfrac{x^2}{6D}\)</p>
+        <p>Distance in meters, time in seconds. The quadratic dependence shows why long-distance diffusion is
+          impractical.</p>
+        <div class="calculation_section">
+          <h2 class="param_title">Time Calculater</h2>
+          <p class="param_description">Adjust distance see how time it takes to reach that distance </p>
+          <div>
+            <label class="distance_label">Distance (micrometers): </label>
+            <input class="distance_input" id="distanceInput" type="number" value="100">
+          </div>
+          <div class="results_container" id="results"></div>
+          <button class="calculate_button" id="calcBtn">Calculate Times</button>
+        </div>
+      </article>
+
+      <article class="concept_card">
+        <h3> How Temperature, Viscosity, and Ion Size Affect \(D\)</h3>
+        <p>Stokes-Einstein relation:</p>
+        <p class="equation">\(D = \dfrac{k_B T}{6 \pi \eta r}\)</p>
+        <ul class="concept_list">
+          <li><strong>Temperature \(T\):</strong> higher \(T\) increases \(D\) and speeds diffusion.</li>
+          <li><strong>Viscosity \(\eta\):</strong> thicker media lower \(D\) and slow diffusion.</li>
+          <li><strong>Ion radius \(r\):</strong> larger ions move slower, reducing \(D\).</li>
+        </ul>
+        <p>Small ions in warm, low-viscosity fluid diffuse fastest; large ions in cold, viscous fluid diffuse slowest.
+        </p>
+        <div class="parameter_explorer">
+          <h2 class="param_title">Parameter Explorer</h2>
+          <p class="param_description">Adjust temperature, viscosity, and ion size to see how they affect the diffusion
+            constant D</p>
+
+          <div class="param_control">
+            <label class="param_label">Temperature (K): <span id="tempValue">310</span></label>
+            <input class="param_slider" type="range" id="tempSlider" min="273" max="373" step="1" value="310">
+          </div>
+
+          <div class="param_control">
+            <label class="param_label">Viscosity (Pa·s): <span id="viscValue">0.001</span></label>
+            <input class="param_slider" type="range" id="viscSlider" min="0.0001" max="0.01" step="0.0001"
+              value="0.001">
+          </div>
+
+          <div class="param_control">
+            <label class="param_label">Ion Radius (nm): <span id="radiusValue">0.2</span></label>
+            <input class="param_slider" type="range" id="radiusSlider" min="0.05" max="1.0" step="0.01" value="0.2">
+          </div>
+
+          <button class="apply_button" id="applyParams">Apply Parameters to D</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+
+
+
+
+
+
+  <div class="graph_section">
+    <div class="graphs">
+      <h2 class="graph_title">Diffusion Graphs</h2>
+      <p class="graph_description">The mean squared displacement (MSD) of a particle changes with time. The linear
+        increase in MSD indicates normal diffusion, where particles move randomly and spread out at a constant rate over
+        time.</p>
+      <div id="msdPlot" style="width: 600px; height: 400px;"></div>
+    </div>
+    <div class="graphs">
+      <h2 class="graph_title">Diffusion Time</h2>
+      <p class="graph_description">See how diffusion time scales with distance. and The curved (non-linear) rise
+        indicates that diffusion time scales with the square of the distance (
+        𝑡
+        ∝
+        𝑥
+        2
+        t∝x
+        2
+        ). This means that doubling the distance makes diffusion take about four times longer, highlighting how
+        diffusion becomes very slow over large distances. </p>
+      <div id="diffusionTimePlot" style="width: 600px; height: 400px;"></div>
+    </div>
+    <div class="graphs">
+      <h2 class="graph_title">Compare Diffusion Constants</h2>
+      <p class="graph_description">This graph compares the time required for signal transmission by diffusion and by action potentials over increasing distances. Diffusion becomes dramatically slower as distance increases, while action potentials transmit signals rapidly and efficiently with nearly linear time scaling. This highlights why biological 
+        systems rely on action potentials rather than diffusion for long-distance communication.</p>
+      <div id="comparePlot" style="width: 600px; height: 400px;"></div>
+    </div>
+  </div>
+
+
+
+
+
+  <script src="https://unpkg.com/three@0.151.3/build/three.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js?v=0.16.11"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js?v=0.16.11"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
